@@ -288,19 +288,19 @@ public interface List {
      * @see Object#equals(Object)
      * @see #equals(Object)
      *//*
-    int hashCode();
+    int hashCode();*/
 
-    *//**
+    /**
      * Returns the element at the specified position in this list.
      *
      * @param index index of the element to return
      * @return the element at the specified position in this list
      * @throws IndexOutOfBoundsException if the index is out of range
      *                                   ({@code index < 0 || index >= size()})
-     *//*
+     */
     int get(int index);
 
-    *//**
+    /*/**
      * Replaces the element at the specified position in this list with the
      * specified element (optional operation).
      *
