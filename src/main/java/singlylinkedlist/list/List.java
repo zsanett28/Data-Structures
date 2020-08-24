@@ -315,8 +315,9 @@ public interface List {
      *                                       ({@code index < 0 || index >= size()})
      *//*
     int set(int index, int element);
+    */
 
-    *//**
+    /**
      * Inserts the specified element at the specified position in this list
      * (optional operation).  Shifts the element currently at that position
      * (if any) and any subsequent elements to the right (adds one to their
@@ -330,13 +331,13 @@ public interface List {
      *                                       element prevents it from being added to this list
      * @throws IndexOutOfBoundsException     if the index is out of range
      *                                       ({@code index < 0 || index > size()})
-     *//*
+     */
     void add(int index, int element);
 
 
     // Search Operations
 
-*//*    *//**//**
+    /**
      * Removes the element at the specified position in this list (optional
      * operation).  Shifts any subsequent elements to the left (subtracts one
      * from their indices).  Returns the element that was removed from the

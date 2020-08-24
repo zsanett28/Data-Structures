@@ -42,6 +42,17 @@ public class SinglyLinkedList implements List {
     }
 
     @Override
+    public void add(int index, int element) {
+        checkPositionIndex(index);
+        if (count == index) {
+            linkLast(element);
+        } else {
+            Node succ = node(index);
+            linkBefore(element, succ);
+        }
+    }
+
+    @Override
     public int get(int index) {
         checkElementIndex(index);
         return node(index).value;
@@ -123,7 +134,27 @@ public class SinglyLinkedList implements List {
      * Inserts element e before non-null Node succ.
      */
     private void linkBefore(int e, Node succ) {
-        // TODO
+        Node current = new Node(e);
+        Node pred = getPredecessor(succ);
+
+        if (pred == null) {
+            linkFirst(e);
+        } else {
+            current.next = succ;
+            pred.next = current;
+            count ++;
+        }
+    }
+
+    private Node getPredecessor(Node node) {
+        if (head == node) {
+            return null;
+        }
+        Node trav = head;
+        while (trav.next != node && trav.next != null) {
+            trav = trav.next;
+        }
+        return trav;
     }
 
     /**
@@ -160,13 +191,10 @@ public class SinglyLinkedList implements List {
     /*/**
      * Tells if the argument is the index of a valid position for an
      * iterator or an add operation.
-     *//*
+     */
     private boolean isPositionIndex(int index) {
-        // TODO
-        return false;
+        return 0 <= index && index <= count;
     }
-
-    */
 
     /**
      * Constructs an IndexOutOfBoundsException detail message.
@@ -183,9 +211,11 @@ public class SinglyLinkedList implements List {
         }
     }
 
-    /*private void checkPositionIndex(int index) {
-        // TODO
-    }*/
+    private void checkPositionIndex(int index) {
+        if(!isPositionIndex(index)) {
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+        }
+    }
 
     /**
      * Returns the (non-null) Node at the specified element index.

@@ -57,7 +57,7 @@ class SinglyLinkedListTest {
     }
 
     @Test
-    void addFirst() {
+    void testAddFirst() {
         SinglyLinkedList list = new SinglyLinkedList();
 
         list.addFirst(5);
@@ -74,7 +74,7 @@ class SinglyLinkedListTest {
     }
 
     @Test
-    void addLast() {
+    void testAddLast() {
         SinglyLinkedList list = new SinglyLinkedList();
 
         list.addLast(5);
@@ -91,7 +91,7 @@ class SinglyLinkedListTest {
     }
 
     @Test
-    void getFirst() {
+    void testGetFirst() {
         SinglyLinkedList list = new SinglyLinkedList();
 
         assertThrows(NoSuchElementException.class, () -> list.getFirst());
@@ -107,7 +107,7 @@ class SinglyLinkedListTest {
     }
 
     @Test
-    void getLast() {
+    void testGetLast() {
         SinglyLinkedList list = new SinglyLinkedList();
 
         assertThrows(NoSuchElementException.class, () -> list.getLast());
@@ -121,4 +121,37 @@ class SinglyLinkedListTest {
         list.addLast(7);
         assertEquals(7, list.getLast());
     }
+
+    @Test
+    void testAddAtIndex() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        list.add(0,5);
+        assertEquals(5, list.get(0));
+
+        list.add(1,10);
+        assertEquals(10, list.get(1));
+
+        list.add(1,15);
+        assertEquals(15, list.get(1));
+
+        list.add(0,11);
+        assertEquals(11, list.get(0));
+    }
+
+    @Test
+    void testAddIndexOutOfBound() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.add(1,13));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.add(-1,13));
+
+        list.add(5);
+        assertThrows(IndexOutOfBoundsException.class, () -> list.add(2,13));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.add(-1,13));
+
+        list.add(1,10);
+        assertThrows(IndexOutOfBoundsException.class, () -> list.add(3,13));
+    }
+
 }
