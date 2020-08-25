@@ -36,6 +36,11 @@ public class SinglyLinkedList implements List {
     }
 
     @Override
+    public boolean isEmpty() {
+        return size() == 0;
+    }
+
+    @Override
     public boolean add(int e) {
         linkLast(e);
         return true;
@@ -53,9 +58,55 @@ public class SinglyLinkedList implements List {
     }
 
     @Override
+    public int set(int index, int element) {
+        checkElementIndex(index);
+        Node node = node(index);
+
+        int oldElement = node.value;
+        node.value = element;
+        return oldElement;
+    }
+
+    @Override
     public int get(int index) {
         checkElementIndex(index);
         return node(index).value;
+    }
+
+    @Override
+    public int indexOf(int e) {
+        Node trav = head;
+        int index = 0;
+
+        while (trav != null) {
+            if (trav.value == e) {
+                return index;
+            }
+            trav = trav.next;
+            index++;
+        }
+        return -1;
+    }
+
+    @Override
+    public int lastIndexOf(int e) {
+        Node trav = head;
+        int index = 0;
+        int lastIndex = -1;
+
+        while (trav != null) {
+            if (trav.value == e) {
+                lastIndex = index;
+            }
+            trav = trav.next;
+            index++;
+        }
+        return lastIndex;
+    }
+
+    @Override
+    public boolean contains(int e) {
+        return indexOf(e) != -1;
     }
 
     /**
@@ -188,7 +239,7 @@ public class SinglyLinkedList implements List {
         return 0 <= index && index < count;
     }
 
-    /*/**
+    /**
      * Tells if the argument is the index of a valid position for an
      * iterator or an add operation.
      */

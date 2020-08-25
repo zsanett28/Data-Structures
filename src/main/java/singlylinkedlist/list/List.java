@@ -47,24 +47,24 @@ public interface List {
      */
     int size();
 
-    /*/**
+    /**
      * Returns {@code true} if this list contains no elements.
      *
      * @return {@code true} if this list contains no elements
-     *//*
+     */
     boolean isEmpty();
 
-    *//**
+    /**
      * Returns {@code true} if this list contains the specified element.
      *
      * @param e element whose presence in this list is to be tested
      * @return {@code true} if this list contains the specified element
-     *//*
+     */
     boolean contains(int e);
 
     // Modification Operations
 
-    *//**
+    /**
      * Returns an array containing all of the elements in this list in proper
      * sequence (from first to last element).
      *
@@ -300,7 +300,7 @@ public interface List {
      */
     int get(int index);
 
-    /*/**
+    /**
      * Replaces the element at the specified position in this list with the
      * specified element (optional operation).
      *
@@ -313,9 +313,8 @@ public interface List {
      *                                       element prevents it from being added to this list
      * @throws IndexOutOfBoundsException     if the index is out of range
      *                                       ({@code index < 0 || index >= size()})
-     *//*
+     */
     int set(int index, int element);
-    */
 
     /**
      * Inserts the specified element at the specified position in this list
@@ -350,9 +349,9 @@ public interface List {
      * @throws IndexOutOfBoundsException     if the index is out of range
      *                                       ({@code index < 0 || index >= size()})
      *//**//*
-    int remove(int index);*//*
+    int remove(int index);*/
 
-    *//**
+    /**
      * Returns the index of the first occurrence of the specified element
      * in this list, or -1 if this list does not contain the element.
      * More formally, returns the lowest index {@code i} such that
@@ -362,15 +361,12 @@ public interface List {
      * @param e element to search for
      * @return the index of the first occurrence of the specified element in
      * this list, or -1 if this list does not contain the element
-     * @throws NullPointerException if the specified element is null and this
-     *                              list does not permit null elements
-     *                              (<a href="Collection.html#optional-restrictions">optional</a>)
-     *//*
+     */
     int indexOf(int e);
 
     // View
 
-    *//**
+    /**
      * Returns the index of the last occurrence of the specified element
      * in this list, or -1 if this list does not contain the element.
      * More formally, returns the highest index {@code i} such that
@@ -383,10 +379,10 @@ public interface List {
      * @throws NullPointerException if the specified element is null and this
      *                              list does not permit null elements
      *                              (<a href="Collection.html#optional-restrictions">optional</a>)
-     *//*
+     */
     int lastIndexOf(int e);
 
-    *//**
+    /**
      * Returns a view of the portion of this list between the specified
      * {@code fromIndex}, inclusive, and {@code toIndex}, exclusive.  (If
      * {@code fromIndex} and {@code toIndex} are equal, the returned list is

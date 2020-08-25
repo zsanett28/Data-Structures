@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class SinglyLinkedListTest {
 
@@ -154,4 +153,85 @@ class SinglyLinkedListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> list.add(3,13));
     }
 
+    @Test
+    void testSet() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.set(0,10));
+
+        list.add(2);
+        assertEquals(2, list.set(0,10));
+        assertEquals(10, list.get(0));
+        assertEquals(1, list.size());
+    }
+
+    @Test
+    void testIndexOf() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        assertEquals(-1, list.indexOf(3));
+
+        list.add(10);
+        list.add(15);
+        assertEquals(1, list.indexOf(15));
+
+        list.add(2,20);
+        assertEquals(2, list.indexOf(20));
+        assertEquals(0, list.indexOf(10));
+
+        list.set(0,30);
+        assertEquals(-1, list.indexOf(10));
+
+        list.add(2,6);
+        list.add(4,6);
+        assertEquals(2, list.indexOf(6));
+    }
+
+    @Test
+    void testContains() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        assertFalse(list.contains(10));
+        list.add(10);
+        assertTrue(list.contains(10));
+
+        list.set(0,15);
+        assertTrue(list.contains(15));
+        assertFalse(list.contains(10));
+    }
+
+    @Test
+    void testIsEmpty() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        assertTrue(list.isEmpty());
+
+        list.add(10);
+        assertFalse(list.isEmpty());
+    }
+
+    @Test
+    void testLastIndexOf() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        assertEquals(-1, list.lastIndexOf(3));
+
+        list.add(10);
+        list.add(15);
+        assertEquals(1, list.lastIndexOf(15));
+
+        list.add(2,20);
+        assertEquals(2, list.lastIndexOf(20));
+        assertEquals(0, list.lastIndexOf(10));
+
+        list.set(0,30);
+        assertEquals(-1, list.lastIndexOf(10));
+
+        list.add(2,6);
+        list.add(4,6);
+        assertEquals(4, list.lastIndexOf(6));
+
+        list.add(6);
+        assertEquals(5, list.lastIndexOf(6));
+    }
 }
