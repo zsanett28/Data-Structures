@@ -58,6 +58,12 @@ public class SinglyLinkedList implements List {
     }
 
     @Override
+    public int remove(int index) {
+        checkElementIndex(index);
+        return unlink(node(index));
+    }
+
+    @Override
     public int set(int index, int element) {
         checkElementIndex(index);
         Node node = node(index);
@@ -109,6 +115,39 @@ public class SinglyLinkedList implements List {
         return indexOf(e) != -1;
     }
 
+    @Override
+    public void clear() {
+        Node trav = head;
+        Node next;
+
+        while (trav != null) {
+            next = trav.next;
+
+            trav.next = null;
+            trav.value = 0;
+
+            trav = next;
+        }
+
+        head = null;
+        count = 0;
+    }
+
+    @Override
+    public int[] toArray() {
+        int[] array = new int[count];
+        int i = 0;
+        Node trav = head;
+
+        while (trav != null) {
+            array[i] = trav.value;
+            trav = trav.next;
+            i++;
+        }
+
+        return array;
+    }
+
     /**
      * Inserts the specified element at the beginning of this list.
      *
@@ -127,6 +166,17 @@ public class SinglyLinkedList implements List {
      */
     public void addLast(int e) {
         linkLast(e);
+    }
+
+    /**
+     * Inserts the specified element before the first occurrence of another element.
+     *
+     * @param insertValue the element to add
+     * @param searchValue the element searched for. insertValue is added before its first occurrence.
+     */
+    public void addBefore(int insertValue, int searchValue) {
+        int index = indexOf(searchValue);
+        add(index, insertValue);
     }
 
     /**
@@ -153,6 +203,35 @@ public class SinglyLinkedList implements List {
             throw new NoSuchElementException();
         }
         return node(count - 1).value;
+    }
+
+    /**
+     * Removes and returns the first element from this list.
+     *
+     * @return the first element from this list
+     * @throws NoSuchElementException if this list is empty
+     */
+    public int removeFirst() {
+        if (head == null) {
+            throw new NoSuchElementException();
+        }
+
+        return unlinkFirst(head);
+    }
+
+    /**
+     * Removes and returns the last element from this list.
+     *
+     * @return the last element from this list
+     * @throws NoSuchElementException if this list is empty
+     */
+    public int removeLast() {
+        if (head == null) {
+            throw new NoSuchElementException();
+        }
+
+        Node last = node(count - 1);
+        return unlinkLast(last);
     }
 
     // Private methods
@@ -193,7 +272,7 @@ public class SinglyLinkedList implements List {
         } else {
             current.next = succ;
             pred.next = current;
-            count ++;
+            count++;
         }
     }
 
@@ -210,27 +289,48 @@ public class SinglyLinkedList implements List {
 
     /**
      * Unlinks non-null first node f.
-     *//*
+     */
     private int unlinkFirst(Node f) {
-        // TODO
-        return 0;
+        int oldElement = f.value;
+        head = f.next;
+        count--;
+        return oldElement;
     }
 
-    *//**
+    /**
      * Unlinks non-null last node l.
-     *//*
+     */
     private int unlinkLast(Node l) {
-        // TODO
-        return 0;
+        int oldElement = l.value;
+
+        if (count == 1) {
+            head = null;
+        } else {
+            Node secondLast = node(count - 2);
+            secondLast.next = null;
+        }
+
+        count--;
+        return oldElement;
     }
 
-    *//**
-     * Unlinks non-null node x.
-     *//*
-    int unlink(Node x) {
-        // TODO
-        return 0;
-    }*/
+    /**
+     * Unlinks non-null node.
+     */
+    int unlink(Node node) {
+        int oldElement = node.value;
+        Node pred = getPredecessor(node);
+        Node next = node.next;
+
+        if (pred == null) {
+            head = next;
+        } else {
+            pred.next = next;
+        }
+
+        count--;
+        return oldElement;
+    }
 
     /**
      * Tells if the argument is the index of an existing element.
@@ -263,7 +363,7 @@ public class SinglyLinkedList implements List {
     }
 
     private void checkPositionIndex(int index) {
-        if(!isPositionIndex(index)) {
+        if (!isPositionIndex(index)) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
         }
     }

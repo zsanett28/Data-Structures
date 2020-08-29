@@ -78,9 +78,9 @@ public interface List {
      *
      * @return an array containing all of the elements in this list in proper
      * sequence
-     *//*
+     */
     int[] toArray();
-*/
+
 
     /**
      * Appends the specified element to the end of this list (optional
@@ -117,10 +117,10 @@ public interface List {
      * @return {@code true} if this list contained the specified element
      * @throws UnsupportedOperationException if the {@code remove} operation
      *                                       is not supported by this list
-     *//*
-    boolean remove(int e);
+     */
+    /*boolean remove(int e);*/
 
-    *//**
+    /**
      * Returns {@code true} if this list contains all of the elements of the
      * specified collection.
      *
@@ -238,21 +238,21 @@ public interface List {
     @SuppressWarnings({"unchecked", "rawtypes"})
     default void sort(Comparator<Integer> c) {
         // TODO
-    }
+    }*/
 
 
     // Comparison and hashing
 
-    *//**
+    /**
      * Removes all of the elements from this list (optional operation).
      * The list will be empty after this call returns.
      *
      * @throws UnsupportedOperationException if the {@code clear} operation
      *                                       is not supported by this list
-     *//*
+     */
     void clear();
 
-    *//**
+    /**
      * Compares the specified object with this list for equality.  Returns
      * {@code true} if and only if the specified object is also a list, both
      * lists have the same size, and all corresponding pairs of elements in
@@ -348,8 +348,8 @@ public interface List {
      *                                       is not supported by this list
      * @throws IndexOutOfBoundsException     if the index is out of range
      *                                       ({@code index < 0 || index >= size()})
-     *//**//*
-    int remove(int index);*/
+     */
+    int remove(int index);
 
     /**
      * Returns the index of the first occurrence of the specified element

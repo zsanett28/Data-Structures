@@ -16,6 +16,16 @@ class SinglyLinkedListTest {
     }
 
     @Test
+    void testToArray() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        list.add(5);
+        list.add(10);
+        list.add(15);
+        assertArrayEquals(new int[]{5, 10, 15}, list.toArray());
+    }
+
+    @Test
     void testAddSingleElement() {
         SinglyLinkedList list = new SinglyLinkedList();
 
@@ -233,5 +243,83 @@ class SinglyLinkedListTest {
 
         list.add(6);
         assertEquals(5, list.lastIndexOf(6));
+    }
+
+    @Test
+    void testRemove() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.remove(1));
+
+        list.add(10);
+        assertEquals(10, list.remove(0));
+        assertEquals(0, list.size());
+
+        list.add(8);
+        list.add(5);
+        assertEquals(8, list.remove(0));
+        assertEquals(1, list.size());
+        assertEquals(5, list.get(0));
+
+        list.add(10);
+        list.add(15);
+        assertEquals(15, list.remove(2));
+        assertEquals(2, list.size());
+        assertArrayEquals(new int[]{5, 10}, list.toArray());
+
+        list.add(20);
+        assertEquals(10, list.remove(1));
+        assertEquals(2, list.size());
+        assertArrayEquals(new int[]{5, 20}, list.toArray());
+    }
+
+    @Test
+    void testClear() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        list.add(5);
+        list.add(10);
+        list.add(8);
+        list.clear();
+        assertEquals(0, list.size());
+        assertThrows(NoSuchElementException.class, () -> list.getFirst());
+    }
+
+    @Test
+    void testAddBefore() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        list.add(10);
+        list.add(8);
+        list.add(10);
+        list.addBefore(5,10);
+        assertEquals(5, list.get(0));
+    }
+
+    @Test
+    void testRemoveFirstLast() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        list.add(5);
+        list.add(10);
+        list.add(8);
+        list.add(5);
+        assertArrayEquals(new int[]{5, 10, 8, 5}, list.toArray());
+
+        list.removeFirst();
+        assertArrayEquals(new int[]{10, 8, 5}, list.toArray());
+
+        list.add(7);
+        list.removeLast();
+        assertArrayEquals(new int[]{10, 8, 5}, list.toArray());
+
+        list.removeFirst();
+        assertArrayEquals(new int[]{8, 5}, list.toArray());
+
+        list.removeFirst();
+        assertArrayEquals(new int[]{5}, list.toArray());
+
+        list.removeLast();
+        assertArrayEquals(new int[]{}, list.toArray());
     }
 }
