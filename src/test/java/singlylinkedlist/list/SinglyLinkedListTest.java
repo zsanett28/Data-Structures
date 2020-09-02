@@ -16,16 +16,6 @@ class SinglyLinkedListTest {
     }
 
     @Test
-    void testToArray() {
-        SinglyLinkedList list = new SinglyLinkedList();
-
-        list.add(5);
-        list.add(10);
-        list.add(15);
-        assertArrayEquals(new int[]{5, 10, 15}, list.toArray());
-    }
-
-    @Test
     void testAddSingleElement() {
         SinglyLinkedList list = new SinglyLinkedList();
 
@@ -50,6 +40,128 @@ class SinglyLinkedListTest {
     }
 
     @Test
+    void testToArray() {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        list.add(5);
+        list.add(10);
+        list.add(15);
+        assertArrayEquals(new int[]{5, 10, 15}, list.toArray());
+    }
+
+    @Test
+    void testOf() {
+        List list = List.of();
+
+        assertArrayEquals(new int[]{}, list.toArray());
+
+        list = List.of(10, 5, 6);
+
+        assertArrayEquals(new int[]{10, 5, 6}, list.toArray());
+
+    }
+
+    @Test
+    void testEquals() {
+        // Empty lists
+        List list1 = new SinglyLinkedList();
+        List list2 = List.of();
+
+        // reflexive
+        assertEquals(list1, list1);
+        assertEquals(list2, list2);
+
+        // symmetric
+        assertEquals(list1, list2);
+        assertEquals(list2, list1);
+
+        // null
+        assertNotEquals(list1, null);
+
+
+        // Equal lists
+
+        list1.add(5);
+        list1.add(10);
+        list1.add(15);
+
+        list2 = List.of(5, 10, 15);
+
+        // reflexive
+        assertEquals(list1, list1);
+        assertEquals(list2, list2);
+
+        // symmetric
+        assertEquals(list1, list2);
+        assertEquals(list2, list1);
+
+        // null
+        assertNotEquals(list1, null);
+
+        // transitive
+        List list3 = new SinglyLinkedList();
+
+        list3.add(0, 15);
+        list3.add(0, 10);
+        list3.add(0, 5);
+
+        assertEquals(list2, list3);
+        assertEquals(list1, list3);
+
+
+        // Same size, different element
+        list1.set(1, 8);
+
+        // reflexive
+        assertEquals(list1, list1);
+        assertEquals(list2, list2);
+
+        // symmetric
+        assertNotEquals(list1, list2);
+        assertNotEquals(list2, list1);
+
+        // null
+        assertNotEquals(list1, null);
+        assertNotEquals(list2, null);
+
+
+        // Different size
+        list1 = List.of(5, 10, 15, 6);
+
+        // reflexive
+        assertEquals(list1, list1);
+        assertEquals(list2, list2);
+
+        // symmetric
+        assertNotEquals(list1, list2);
+        assertNotEquals(list2, list1);
+
+        // null
+        assertNotEquals(list1, null);
+        assertNotEquals(list2, null);
+    }
+
+    @Test
+    void testHashCode() {
+        // Empty lists
+        List list1 = new SinglyLinkedList();
+        List list2 = List.of();
+
+        assertEquals(list1.hashCode(), list2.hashCode());
+
+        // Equal lists
+
+        list1.add(5);
+        list1.add(10);
+        list1.add(15);
+
+        list2 = List.of(5, 10, 15);
+
+        assertEquals(list1.hashCode(), list2.hashCode());
+
+    }
+
+    @Test
     void testIndexOutOfBound() {
         SinglyLinkedList list = new SinglyLinkedList();
 
@@ -70,16 +182,13 @@ class SinglyLinkedListTest {
         SinglyLinkedList list = new SinglyLinkedList();
 
         list.addFirst(5);
-        assertEquals(5, list.get(0));
+        assertEquals(List.of(5), list);
 
         list.addFirst(10);
-        assertEquals(10, list.get(0));
-        assertEquals(5, list.get(1));
+        assertEquals(List.of(10, 5), list);
 
         list.addFirst(7);
-        assertEquals(7, list.get(0));
-        assertEquals(10, list.get(1));
-        assertEquals(5, list.get(2));
+        assertEquals(List.of(7, 10, 5), list);
     }
 
     @Test
@@ -265,12 +374,12 @@ class SinglyLinkedListTest {
         list.add(15);
         assertEquals(15, list.remove(2));
         assertEquals(2, list.size());
-        assertArrayEquals(new int[]{5, 10}, list.toArray());
+        assertEquals(List.of(5, 10), list);
 
         list.add(20);
         assertEquals(10, list.remove(1));
         assertEquals(2, list.size());
-        assertArrayEquals(new int[]{5, 20}, list.toArray());
+        assertEquals(List.of(5, 20), list);
     }
 
     @Test
@@ -304,23 +413,23 @@ class SinglyLinkedListTest {
         list.add(10);
         list.add(8);
         list.add(5);
-        assertArrayEquals(new int[]{5, 10, 8, 5}, list.toArray());
+        assertEquals(List.of(5, 10, 8, 5), list);
 
         list.removeFirst();
-        assertArrayEquals(new int[]{10, 8, 5}, list.toArray());
+        assertEquals(List.of(10, 8, 5), list);
 
         list.add(7);
         list.removeLast();
-        assertArrayEquals(new int[]{10, 8, 5}, list.toArray());
+        assertEquals(List.of(10, 8, 5), list);
 
         list.removeFirst();
-        assertArrayEquals(new int[]{8, 5}, list.toArray());
+        assertEquals(List.of(8, 5), list);
 
         list.removeFirst();
-        assertArrayEquals(new int[]{5}, list.toArray());
+        assertEquals(List.of(5), list);
 
         list.removeLast();
-        assertArrayEquals(new int[]{}, list.toArray());
+        assertEquals(List.of(), list);
     }
 
     @Test
@@ -341,115 +450,4 @@ class SinglyLinkedListTest {
 
     }
 
-    @Test
-    void testOf() {
-        List list = List.of();
-
-        assertArrayEquals(new int[]{}, list.toArray());
-
-        list = List.of(10, 5, 6);
-
-        assertArrayEquals(new int[]{10, 5, 6}, list.toArray());
-
-    }
-
-    @Test
-    void testEquals() {
-        // Empty lists
-        List list1 = new SinglyLinkedList();
-        List list2 = List.of();
-
-        // reflexive
-        assertEquals(list1, list1);
-        assertEquals(list2, list2);
-
-        // symmetric
-        assertEquals(list1, list2);
-        assertEquals(list2, list1);
-
-        // null
-        assertNotEquals(list1, null);
-
-
-        // Equal lists
-
-        list1.add(5);
-        list1.add(10);
-        list1.add(15);
-
-        list2 = List.of(5, 10, 15);
-
-        // reflexive
-        assertEquals(list1, list1);
-        assertEquals(list2, list2);
-
-        // symmetric
-        assertEquals(list1, list2);
-        assertEquals(list2, list1);
-
-        // null
-        assertNotEquals(list1, null);
-
-        // transitive
-        List list3 = new SinglyLinkedList();
-
-        list3.add(0, 15);
-        list3.add(0, 10);
-        list3.add(0, 5);
-
-        assertEquals(list2, list3);
-        assertEquals(list1, list3);
-
-
-        // Same size, different element
-        list1.set(1, 8);
-
-        // reflexive
-        assertEquals(list1, list1);
-        assertEquals(list2, list2);
-
-        // symmetric
-        assertNotEquals(list1, list2);
-        assertNotEquals(list2, list1);
-
-        // null
-        assertNotEquals(list1, null);
-        assertNotEquals(list2, null);
-
-
-        // Different size
-        list1 = List.of(5, 10, 15, 6);
-
-        // reflexive
-        assertEquals(list1, list1);
-        assertEquals(list2, list2);
-
-        // symmetric
-        assertNotEquals(list1, list2);
-        assertNotEquals(list2, list1);
-
-        // null
-        assertNotEquals(list1, null);
-        assertNotEquals(list2, null);
-    }
-
-    @Test
-    void testHashCode() {
-        // Empty lists
-        List list1 = new SinglyLinkedList();
-        List list2 = List.of();
-
-        assertEquals(list1.hashCode(), list2.hashCode());
-
-        // Equal lists
-
-        list1.add(5);
-        list1.add(10);
-        list1.add(15);
-
-        list2 = List.of(5, 10, 15);
-
-        assertEquals(list1.hashCode(), list2.hashCode());
-
-    }
 }

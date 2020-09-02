@@ -105,147 +105,6 @@ public interface List {
      */
     boolean add(int e);
 
-
-    // Bulk Modification Operations
-
-    /*/**
-     * Removes the first occurrence of the specified element from this list,
-     * if it is present (optional operation).  If this list does not contain
-     * the element, it is unchanged.  More formally, removes the element with
-     * the lowest index {@code i} such that
-     * {@code Objects.equals(e, get(i))}
-     * (if such an element exists).  Returns {@code true} if this list
-     * contained the specified element (or equivalently, if this list changed
-     * as a result of the call).
-     *
-     * @param e element to be removed from this list, if present
-     * @return {@code true} if this list contained the specified element
-     * @throws UnsupportedOperationException if the {@code remove} operation
-     *                                       is not supported by this list
-     */
-    /*boolean remove(int e);*/
-
-    /**
-     * Returns {@code true} if this list contains all of the elements of the
-     * specified collection.
-     *
-     * @param c collection to be checked for containment in this list
-     * @return {@code true} if this list contains all of the elements of the
-     * specified collection
-     * @throws NullPointerException if the specified collection contains one
-     *                              or more null elements and this list does not permit null
-     *                              elements
-     *                              (<a href="Collection.html#optional-restrictions">optional</a>),
-     *                              or if the specified collection is null
-     *//*
-    boolean containsAll(Collection<Integer> c);
-
-    *//**
-     * Appends all of the elements in the specified collection to the end of
-     * this list, in the order that they are returned by the specified
-     * collection's iterator (optional operation).  The behavior of this
-     * operation is undefined if the specified collection is modified while
-     * the operation is in progress.  (Note that this will occur if the
-     * specified collection is this list, and it's nonempty.)
-     *
-     * @param c collection containing elements to be added to this list
-     * @return {@code true} if this list changed as a result of the call
-     * @throws UnsupportedOperationException if the {@code addAll} operation
-     *                                       is not supported by this list
-     * @throws NullPointerException          if the specified collection contains one
-     *                                       or more null elements and this list does not permit null
-     *                                       elements, or if the specified collection is null
-     *//*
-    boolean addAll(Collection<Integer> c);
-
-    *//**
-     * Inserts all of the elements in the specified collection into this
-     * list at the specified position (optional operation).  Shifts the
-     * element currently at that position (if any) and any subsequent
-     * elements to the right (increases their indices).  The new elements
-     * will appear in this list in the order that they are returned by the
-     * specified collection's iterator.  The behavior of this operation is
-     * undefined if the specified collection is modified while the
-     * operation is in progress.  (Note that this will occur if the specified
-     * collection is this list, and it's nonempty.)
-     *
-     * @param index index at which to insert the first element from the
-     *              specified collection
-     * @param c     collection containing elements to be added to this list
-     * @return {@code true} if this list changed as a result of the call
-     * @throws UnsupportedOperationException if the {@code addAll} operation
-     *                                       is not supported by this list
-     * @throws NullPointerException          if the specified collection contains one
-     *                                       or more null elements and this list does not permit null
-     *                                       elements, or if the specified collection is null
-     * @throws IndexOutOfBoundsException     if the index is out of range
-     *                                       ({@code index < 0 || index > size()})
-     *//*
-    boolean addAll(int index, Collection<Integer> c);
-
-    *//**
-     * Removes from this list all of its elements that are contained in the
-     * specified collection (optional operation).
-     *
-     * @param c collection containing elements to be removed from this list
-     * @return {@code true} if this list changed as a result of the call
-     * @throws UnsupportedOperationException if the {@code removeAll} operation
-     *                                       is not supported by this list
-     * @throws NullPointerException          if this list contains a null element and the
-     *                                       specified collection does not permit null elements
-     *                                       (<a href="Collection.html#optional-restrictions">optional</a>),
-     *                                       or if the specified collection is null
-     *//*
-    boolean removeAll(Collection<Integer> c);
-
-    *//**
-     * Retains only the elements in this list that are contained in the
-     * specified collection (optional operation).  In other words, removes
-     * from this list all of its elements that are not contained in the
-     * specified collection.
-     *
-     * @param c collection containing elements to be retained in this list
-     * @return {@code true} if this list changed as a result of the call
-     * @throws UnsupportedOperationException if the {@code retainAll} operation
-     *                                       is not supported by this list
-     * @throws NullPointerException          if this list contains a null element and the
-     *                                       specified collection does not permit null elements
-     *                                       (<a href="Collection.html#optional-restrictions">optional</a>),
-     *                                       or if the specified collection is null
-     *//*
-    boolean retainAll(Collection<Integer> c);
-
-    *//**
-     * Sorts this list according to the order induced by the specified
-     * {@link Comparator}.  The sort is <i>stable</i>: this method must not
-     * reorder equal elements.
-     *
-     * <p>All elements in this list must be <i>mutually comparable</i> using the
-     * specified comparator (that is, {@code c.compare(e1, e2)} must not throw
-     * a {@code ClassCastException} for any elements {@code e1} and {@code e2}
-     * in the list).
-     *
-     * <p>If the specified comparator is {@code null} then all elements in this
-     * list must implement the {@link Comparable} interface and the elements'
-     * {@linkplain Comparable natural ordering} should be used.
-     *
-     * <p>This list must be modifiable, but need not be resizable.
-     *
-     * @param c the {@code Comparator} used to compare list elements.
-     *          A {@code null} value indicates that the elements'
-     *          {@linkplain Comparable natural ordering} should be used
-     * @throws ClassCastException            if the list contains elements that are not
-     *                                       <i>mutually comparable</i> using the specified comparator
-     * @throws UnsupportedOperationException if the list's list-iterator does
-     *                                       not support the {@code set} operation
-     * @since 1.8
-     *//*
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    default void sort(Comparator<Integer> c) {
-        // TODO
-    }*/
-
-
     // Comparison and hashing
 
     /**
@@ -270,13 +129,10 @@ public interface List {
      *
      * @param o the object to be compared for equality with this list
      * @return {@code true} if the specified object is equal to this list
-     *//*
+     */
     boolean equals(Object o);
 
-
-    // Positional Access Operations
-
-    *//**
+    /**
      * Returns the hash code value for this list.  The hash code of a list
      * is defined to be the result of the following calculation:
      * <pre>{@code
@@ -292,8 +148,10 @@ public interface List {
      * @return the hash code value for this list
      * @see Object#equals(Object)
      * @see #equals(Object)
-     *//*
-    int hashCode();*/
+     */
+    int hashCode();
+
+    // Positional Access Operations
 
     /**
      * Returns the element at the specified position in this list.
