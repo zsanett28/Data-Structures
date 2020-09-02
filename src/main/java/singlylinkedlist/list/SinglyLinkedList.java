@@ -1,6 +1,8 @@
 package singlylinkedlist.list;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SinglyLinkedList implements List {
 
@@ -148,6 +150,25 @@ public class SinglyLinkedList implements List {
         return array;
     }
 
+    @Override
+    public List subList(int fromIndex, int toIndex) {
+        subListRangeCheck(fromIndex, toIndex);
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        if (fromIndex == toIndex) {
+            return list;
+        }
+
+        Node trav = node(fromIndex);
+
+        for (int i = fromIndex; i < toIndex; i++) {
+            list.add(trav.value);
+            trav = trav.next;
+        }
+
+        return list;
+    }
+
     /**
      * Inserts the specified element at the beginning of this list.
      *
@@ -232,6 +253,36 @@ public class SinglyLinkedList implements List {
 
         Node last = node(count - 1);
         return unlinkLast(last);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SinglyLinkedList)) return false;
+
+        SinglyLinkedList that = (SinglyLinkedList) o;
+
+        if (this.count != that.count) {
+            return false;
+        }
+
+        Node travThis = this.head;
+        Node travThat = that.head;
+
+        while (travThis != null) {
+            if (travThis.value != travThat.value) {
+                return false;
+            }
+            travThis = travThis.next;
+            travThat = travThat.next;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Arrays.hashCode(this.toArray()), count);
     }
 
     // Private methods
@@ -368,6 +419,18 @@ public class SinglyLinkedList implements List {
         }
     }
 
+    private void subListRangeCheck(int fromIndex, int toIndex) {
+        if (fromIndex > toIndex) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (fromIndex < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (toIndex > count) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
     /**
      * Returns the (non-null) Node at the specified element index.
      */
@@ -396,3 +459,4 @@ public class SinglyLinkedList implements List {
         }
     }
 }
+

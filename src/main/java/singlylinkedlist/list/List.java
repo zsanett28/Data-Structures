@@ -19,24 +19,29 @@ import java.util.Comparator;
  * expect this usage to be rare.<p>
  */
 public interface List {
-   /* // Query Operations
+   // Query Operations
 
-    *//**
-     * Returns an <a href="#unmodifiable">unmodifiable List</a> containing the elements of
-     * the given Collection, in its iteration order. The given Collection must not be null,
-     * and it must not contain any null elements. If the given Collection is subsequently
-     * modified, the returned List will not reflect such modifications.
+    /**
+     * Returns an list containing an arbitrary number of elements.
      *
-     * @param coll a {@code Collection} from which elements are drawn, must be non-null
-     * @return a {@code List} containing the elements of the given {@code Collection}
-     * @throws NullPointerException if coll is null, or if it contains any nulls
-     * @implNote If the given Collection is an <a href="#unmodifiable">unmodifiable List</a>,
-     * calling copyOf will generally not create a copy.
-     *//*
-    static List copyOf(Collection<Integer> coll) {
-        // TODO
-        return null;
-    }*/
+     * @param elements the elements to be contained in the list
+     * @return a {@code List} containing the specified elements
+     * @throws NullPointerException if an element is {@code null} or if the array is {@code null}
+     */
+   static List of(int ...elements) {
+       List list = new SinglyLinkedList();
+
+       if (elements == null) {
+           throw new NullPointerException();
+       }
+
+       for (int element : elements) {
+           list.add(element);
+       }
+
+       return list;
+   }
+
 
     /**
      * Returns the number of elements in this list.  If this list contains
@@ -386,10 +391,7 @@ public interface List {
      * Returns a view of the portion of this list between the specified
      * {@code fromIndex}, inclusive, and {@code toIndex}, exclusive.  (If
      * {@code fromIndex} and {@code toIndex} are equal, the returned list is
-     * empty.)  The returned list is backed by this list, so non-structural
-     * changes in the returned list are reflected in this list, and vice-versa.
-     * The returned list supports all of the optional list operations supported
-     * by this list.<p>
+     * empty.)
      *
      * @param fromIndex low endpoint (inclusive) of the subList
      * @param toIndex   high endpoint (exclusive) of the subList
@@ -397,7 +399,7 @@ public interface List {
      * @throws IndexOutOfBoundsException for an illegal endpoint index value
      *                                   ({@code fromIndex < 0 || toIndex > size ||
      *                                   fromIndex > toIndex})
-     *//*
+     */
     List subList(int fromIndex, int toIndex);
-*/
+
 }
