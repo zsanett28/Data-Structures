@@ -18,18 +18,6 @@ public class SinglyLinkedList implements List {
         this.count = 0;
     }
 
-    /*/**
-     * Constructs a list containing the elements of the specified
-     * collection, in the order they are returned by the collection's
-     * iterator.
-     *
-     * @param c the collection whose elements are to be placed into this list
-     * @throws NullPointerException if the specified collection is null
-     *//*
-    public LinkedList(Collection<Integer> c) {
-        // TODO
-    }*/
-
     // Public methods
 
     @Override
@@ -368,7 +356,7 @@ public class SinglyLinkedList implements List {
     /**
      * Unlinks non-null node.
      */
-    int unlink(Node node) {
+    private int unlink(Node node) {
         int oldElement = node.value;
         Node pred = getPredecessor(node);
         Node next = node.next;
