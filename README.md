@@ -1,6 +1,6 @@
 # Data Structures
 
-Implementation of the fundamental data structures and algorithms in Java through a console application.
+Implementation of the fundamental data structures and algorithms in Java and using them in console applications.
 
 ## Motivation
 
